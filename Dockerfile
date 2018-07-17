@@ -11,7 +11,7 @@ CMD ["/sbin/my_init"]
 RUN apt update
 RUN apt install -y wget
 RUN cd /tmp/
-RUN wget -q wget https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin
+RUN wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin
 RUN bash ManageEngine_KeyManagerPlus_64bit.bin -i silent
 RUN /opt/ManageEngine/Keymanager/bin/keymanager.sh install
 
