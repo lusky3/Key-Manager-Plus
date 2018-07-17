@@ -8,13 +8,11 @@ FROM phusion/baseimage:0.10.1
 CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
-RUN apt update
-RUN apt install -y wget
-RUN cd /tmp/
-RUN wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin
-RUN bash ManageEngine_KeyManagerPlus_64bit.bin -i silent
+RUN apt-get update --qq
+RUN apt-get install wget -qq
+RUN (cd /tmp/ && wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin && bash ManageEngine_KeyManagerPlus_64bit.bin -i silent)
 RUN /opt/ManageEngine/Keymanager/bin/keymanager.sh install
-
+RUN mv /etc/init.d/sshkeymanager-service /etc/my_init.d/
 EXPOSE 6565
 
 # Clean up APT when done.
