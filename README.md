@@ -9,7 +9,7 @@ https://www.manageengine.com/key-manager/
 ## Install Notes
 The application runs on port 6565.
 
-After buidling the image, access the web interface via https://<your IP / hostname>:6565
+After building the image, access the web interface via https://<your IP / hostname>:6565
 
 The default login is admin/admin.
 

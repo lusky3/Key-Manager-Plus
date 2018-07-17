@@ -12,7 +12,9 @@ RUN apt-get update -qq
 RUN apt-get install wget unzip -qq
 RUN (cd /tmp/ && wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin && bash ManageEngine_KeyManagerPlus_64bit.bin -i silent)
 RUN /opt/ManageEngine/Keymanager/bin/keymanager.sh install
-RUN mv /etc/init.d/sshkeymanager-service /etc/my_init.d/
+RUN mkdir /etc/service/keymanager-plus
+COPY sshkeymanager-service.sh /etc/service/keymanager-plus/run
+RUN chmod +x etc/service/keymanager-plus/run
 EXPOSE 6565
 
 # Clean up APT when done.
