@@ -13,6 +13,13 @@ After building the image, access the web interface via https://<your IP / hostna
 
 The default login is admin/admin.
 
+## Docker Configuration
+
+docker run -d \
+    --name key-manager-plus \
+    -v /data:/path/to/data \
+    lusky3/key-manager-plus:latest
+
 ## Editions & Licensing
 The following is ManageEngine's license options.
 

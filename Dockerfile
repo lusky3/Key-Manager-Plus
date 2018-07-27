@@ -6,16 +6,19 @@ FROM phusion/baseimage:0.10.1
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
-
+ 
 # ...put your own build instructions here...
-RUN apt-get update -qq
-RUN apt-get install wget unzip -qq
+RUN apt-get update -qq && apt-get install wget unzip -qq
 RUN (cd /tmp/ && wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin && bash ManageEngine_KeyManagerPlus_64bit.bin -i silent)
 RUN /opt/ManageEngine/Keymanager/bin/keymanager.sh install
 RUN mkdir /etc/service/keymanager-plus
 COPY sshkeymanager-service.sh /etc/service/keymanager-plus/run
 RUN chmod +x etc/service/keymanager-plus/run
+RUN mkdir /data
+RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data /data
+VOLUME /data
 EXPOSE 6565
+HEALTHCHECK CMD curl --fail http://localhost:6565/ || exit 1
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
