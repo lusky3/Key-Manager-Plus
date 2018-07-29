@@ -14,7 +14,7 @@ RUN (cd /opt/ManageEngine/Keymanager && find . \( -name '*.ps1' -o -name '*.vbs'
 RUN mkdir /etc/service/keymanager-plus
 COPY sshkeymanager-service.sh /etc/service/keymanager-plus/run
 RUN chmod +x etc/service/keymanager-plus/run
-RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data /data
+RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data/base /data
 RUN chmod -x /etc/my_init.d/00_regen_ssh_host_keys.sh
 COPY database-reinit.sh /etc/my_init.d/00_database-reinit.sh
 RUN chmod +x /etc/my_init.d/00_database-reinit.sh
