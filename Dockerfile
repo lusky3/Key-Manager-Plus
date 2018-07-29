@@ -14,7 +14,6 @@ RUN /opt/ManageEngine/Keymanager/bin/keymanager.sh install
 RUN mkdir /etc/service/keymanager-plus
 COPY sshkeymanager-service.sh /etc/service/keymanager-plus/run
 RUN chmod +x etc/service/keymanager-plus/run
-RUN mkdir /data
 RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data /data
 VOLUME /data
 EXPOSE 6565
