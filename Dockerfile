@@ -17,7 +17,7 @@ RUN chmod +x etc/service/keymanager-plus/run
 RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data /data
 VOLUME /data
 EXPOSE 6565
-HEALTHCHECK CMD curl --fail --insecure https://localhost:6565/ || exit 1
+HEALTHCHECK --start-period=300s CMD curl --fail --insecure https://localhost:6565/ || exit 1
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
