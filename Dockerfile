@@ -19,8 +19,8 @@ RUN ln -s /opt/ManageEngine/Keymanager/pgsql/data/base /data
 RUN chmod -x /etc/my_init.d/00_regen_ssh_host_keys.sh
 COPY database-reinit.sh /etc/my_init.d/00_database-reinit.sh
 RUN chmod +x /etc/my_init.d/00_database-reinit.sh
-VOLUME /data
 EXPOSE 6565
+VOLUME /data
 HEALTHCHECK --start-period=300s CMD curl --silent --fail --insecure https://localhost:6565/apiclient/index.jsp || exit 1
 
 # Clean up APT when done.
