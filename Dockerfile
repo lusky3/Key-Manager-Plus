@@ -9,6 +9,7 @@ CMD ["/sbin/my_init"]
  
 # ...put your own build instructions here...
 RUN apt-get update -qq && apt-get install wget unzip -qq
+VOLUME /data
 RUN (cd /tmp/ && wget -q https://download.manageengine.com/key-manager/97531/ManageEngine_KeyManagerPlus_64bit.bin && bash ManageEngine_KeyManagerPlus_64bit.bin -i silent)
 RUN (cd /opt/ManageEngine/Keymanager && find . \( -name '*.ps1' -o -name '*.vbs' -o -name '*.bat' -o -name '*.bat*' -o -name '*.exe' \) -delete)
 RUN mkdir /etc/service/keymanager-plus
